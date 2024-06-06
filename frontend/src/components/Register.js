@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useNavigate} from 'react-router-dom';
 import './Register.css';
 
 
@@ -8,6 +9,8 @@ const MyForm = () => {
       email: '',
       password: ''
     });
+
+    const navigate = useNavigate();
   
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -34,6 +37,8 @@ const MyForm = () => {
   
         const data = await response.json();
         console.log(data);
+
+        navigate('/upload');
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
       }
@@ -62,6 +67,9 @@ const MyForm = () => {
                   </label>
               </div>
               <button type="submit">Register</button>
+              <p>
+             Already have an account? <Link to="/login">Login</Link>
+        </p>
           </form>
       </div>
   );
